@@ -14,6 +14,11 @@
             font-weight: bold;
             margin: 0 0 1em;
         }
+        h2 {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 1em 0;
+        }
         p {
             margin:1em 0;
         }
@@ -32,20 +37,24 @@
     <p>This page has been created to test the responsiveness of imagery on the web using the picture tag along with sizes and srcset attributes, using this page as a reference <a href="https://www.sitepoint.com/how-to-build-responsive-images-with-srcset/">https://www.sitepoint.com/how-to-build-responsive-images-with-srcset/</a></p>
     <p>This page does not focus on accessibility or anything other than a simple test to check different images are being loaded. Different images are being used to prove easily that different image files are being accessed.</p>
     <p><small>No ownership is being declared over these images, they are simply from a google search.</small></p>
+    <h2>Comparison</h2>
+    <p>Compare the images below to see if responsive imagery is being loaded:</p>
 
     <!--
         ********** Original image tags for reference **********
     -->
 
     <!--
-        <img src="img/400.jpg" alt="">
+        <img src="img/350.jpg" alt="">
         <br />
         <img src="img/600.jpg" alt="">
         <br />
-        <img src="img/1280.jpg" alt="">
+        <img src="img/900.jpg" alt="">
         <br />
         <img src="img/1920.jpg" alt="">
     -->
+
+    <p>Image below being provided dynamically by browser:</p>
 
     <!--
         ********** srcset attr only based on width **********
@@ -58,7 +67,7 @@
         - Samsung S7
         - iPhone 5s
     -->
-    <!-- <img src="img/400.jpg" srcset="img/1920.jpg 1920w, img/1280.jpg 1280w, img/600.jpg 600w, img/400.jpg 400w" alt=""> -->
+    <!-- <img src="img/350.jpg" srcset="img/1920.jpg 1920w, img/900.jpg 900w, img/600.jpg 600w, img/350.jpg 350w" alt=""> -->
 
     <!--
         ********** Picture tag based on width **********
@@ -73,12 +82,51 @@
     -->
 
     <picture>
-        <source media="(min-width:1920px)" srcset="img/1920.jpg">
-        <source media="(min-width:1280px)" srcset="img/1280.jpg">
-        <source media="(min-width:600px)" srcset="img/600.jpg">
-        <source media="(min-width:400px)" srcset="img/400.jpg">
-        <img src="img/1280.jpg" alt="">
+        <source media="(min-width:900px)" srcset="img/1920.jpg">
+        <source media="(min-width:600px)" srcset="img/900.jpg">
+        <source media="(min-width:350px)" srcset="img/600.jpg">
+        <img src="img/350.jpg" alt="">
     </picture>
+
+    <p id="size">Waiting for javascript to determine screen size&hellip;</p>
+    <img id="img" src="" alt="">
+
     <script type="text/javascript" src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" async></script>
+    <script type="text/javascript">
+
+        function getImageComparison() {
+
+                // get the window width
+                var windowWidth = window.innerWidth;
+
+                // decide what image should be shown based on the window width
+                switch (true) {
+                    case windowWidth > 900:
+                        desiredImage = 1920;
+                        break;
+                    case windowWidth > 600:
+                        desiredImage = 900;
+                        break;
+                    case windowWidth > 350:
+                        desiredImage = 600;
+                        break;
+                    default:
+                        desiredImage = 350;
+                }
+
+                // get element to show the size of the window
+                var size = document.getElementById('size');
+                size.innerHTML = 'Image below inserted manually by JavaScript (to show for ' + windowWidth + 'px screen size):';
+
+                // get element to represent what the page should be showing
+                var img = document.getElementById('img');
+                img.src="img/" + desiredImage + ".jpg";
+
+            }
+
+        // on page load and resize show comparison image
+        window.addEventListener('load', getImageComparison);
+        window.addEventListener('resize', getImageComparison);
+    </script>
 </body>
 </html>
