@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/scoobster17/responsive-imagery#readme",
   "devDependencies": {
-    "reset-css": "^2.0.20160720"
+    "reset-css": "^2.0.20160720",
+    "serve": "^1.4.0"
   }
 }
