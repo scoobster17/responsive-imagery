@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta viewport="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Imagery</title>
     <link rel="stylesheet" type="text/css" href="node_modules/reset-css/reset.css">
     <style type="text/css">
@@ -17,7 +17,15 @@
         p {
             margin:1em 0;
         }
+        img {
+            display:block;
+            width:100%;
+        }
     </style>
+    <script type="text/javascript">
+        // Picture element HTML5 shiv
+        document.createElement( "picture" );
+    </script>
 </head>
 <body>
     <h1>Responsive Imagery Test</h1>
@@ -25,26 +33,52 @@
     <p>This page does not focus on accessibility or anything other than a simple test to check different images are being loaded. Different images are being used to prove easily that different image files are being accessed.</p>
     <p><small>No ownership is being declared over these images, they are simply from a google search.</small></p>
 
-    <!-- ********** Original image tags for reference ********** -->
+    <!--
+        ********** Original image tags for reference **********
+    -->
 
-    <!-- <img src="img/400.jpg" alt="">
-    <br />
-    <img src="img/600.jpg" alt="">
-    <br />
-    <img src="img/1280.jpg" alt="">
-    <br />
-    <img src="img/1920.jpg" alt=""> -->
-
-    <!-- ********** srcset attr only ********** -->
-
-    <img src="img/400.jpg" srcset="img/1920.jpg 1920w, img/1280.jpg 1280w, img/600.jpg 600w, img/400.jpg 400w" alt="">
-
-    <!-- ********** Picture tag ********** -->
-
-    <!-- <picture>
-        <source media="(max-width:600px)" srcset="400.jpg 400w, 600.jpg 600w">
-        <source media="(max-width:1280px)" srcset="img/1280.jpg 1x, img/1920.jpg 2x">
+    <!--
+        <img src="img/400.jpg" alt="">
+        <br />
+        <img src="img/600.jpg" alt="">
+        <br />
         <img src="img/1280.jpg" alt="">
-    </picture> -->
+        <br />
+        <img src="img/1920.jpg" alt="">
+    -->
+
+    <!--
+        ********** srcset attr only based on width **********
+        Seems to work on:
+        - iPad
+        - iPhone 4
+        - Chrome (Mac)
+
+        Doesn't seem to work on:
+        - Samsung S7
+        - iPhone 5s
+    -->
+    <!-- <img src="img/400.jpg" srcset="img/1920.jpg 1920w, img/1280.jpg 1280w, img/600.jpg 600w, img/400.jpg 400w" alt=""> -->
+
+    <!--
+        ********** Picture tag based on width **********
+        Seems to work on:
+        - Chrome (Mac)
+
+        Doesn't seem to work on:
+        - iPad
+        - iPhone 4
+        - iPhone 5s
+        - Samsung S7
+    -->
+
+    <picture>
+        <source media="(min-width:1920px)" srcset="img/1920.jpg">
+        <source media="(min-width:1280px)" srcset="img/1280.jpg">
+        <source media="(min-width:600px)" srcset="img/600.jpg">
+        <source media="(min-width:400px)" srcset="img/400.jpg">
+        <img src="img/1280.jpg" alt="">
+    </picture>
+    <script type="text/javascript" src="https://cdn.rawgit.com/scottjehl/picturefill/3.0.2/dist/picturefill.min.js" async></script>
 </body>
 </html>
