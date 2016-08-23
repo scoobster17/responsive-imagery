@@ -4,7 +4,8 @@
   "description": "A test for responsive imagery",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve -p 7352 ~/Documents/projects/responsive-imagery"
   },
   "repository": {
     "type": "git",
