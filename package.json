@@ -1,0 +1,28 @@
+{
+  "name": "responsive-imagery",
+  "version": "1.0.0",
+  "description": "A test for responsive imagery",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scoobster17/responsive-imagery.git"
+  },
+  "keywords": [
+    "responsive",
+    "imagery",
+    "image",
+    "images"
+  ],
+  "author": "Phil Gibbins <scoobster17@hotmail.co.uk> (http://www.philgibbins.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scoobster17/responsive-imagery/issues"
+  },
+  "homepage": "https://github.com/scoobster17/responsive-imagery#readme",
+  "devDependencies": {
+    "reset-css": "^2.0.20160720"
+  }
+}
