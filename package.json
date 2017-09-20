@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "serve -p 7352 ~/Documents/projects/responsive-imagery"
+    "serve": "serve -p 7352 ."
   },
   "repository": {
     "type": "git",
